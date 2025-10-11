@@ -1,0 +1,231 @@
+.app-container {
+    max-width: 500px;
+    padding: 24px 18px;
+    background: #fff;
+    border-radius: 22px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.09);
+}
+
+.app-title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #204070;
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: 28px;
+    align-items: flex-start;
+}
+
+.upload-box {
+    flex: 1 1 200px;
+    border: 2px dashed #b3c7e6;
+    border-radius: 14px;
+    background: #f4f8fc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 240px;
+    margin-bottom: 0;
+    transition: border 0.2s;
+}
+
+.upload-box.drag-active {
+    border: 2px solid #4c8bf5;
+    background: #eaf2fb;
+}
+
+.upload-icon-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.upload-icon {
+    font-size: 3.2rem;
+    color: #4c8bf5;
+    margin-bottom: 10px;
+}
+
+.upload-text {
+    font-size: 1.1rem;
+    color: #204070;
+    margin-bottom: 8px;
+}
+
+.upload-browse {
+    background: #204070;
+    color: #fff;
+    border: none;
+    border-radius: 22px;
+    padding: 10px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.upload-browse:hover {
+    background: #4c8bf5;
+}
+
+.upload-filename {
+    font-size: 0.98rem;
+    color: #1d3557;
+    margin-top: 7px;
+    word-break: break-all;
+}
+
+.preview-image {
+    display: flex;
+    flex-direction: column;
+}
+
+.preview-image > .upload-preview {
+    margin-bottom: 10px;
+}
+
+.preview-image > .upload-preview {
+    margin-bottom: 10px;
+}
+
+.form-fields {
+    flex: 2 1 240px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+}
+
+.category-selector {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.category-label,
+.subcategory-label {
+    flex: 1 1 120px;
+    font-size: 1rem;
+    color: #18325d;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.category-dropdown,
+.subcategory-dropdown {
+    padding: 7px 10px;
+    border-radius: 7px;
+    border: 1px solid #b3c7e6;
+    font-size: 1rem;
+    background: #f4f8fc;
+    color: #18325d;
+}
+
+.category-dropdown:disabled,
+.subcategory-dropdown:disabled {
+    background: #e0e7f3;
+    color: #b3c7e6;
+}
+
+.name-input-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.name-label {
+    font-size: 1rem;
+    color: #18325d;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.name-input {
+    padding: 7px 10px;
+    border-radius: 7px;
+    border: 1px solid #b3c7e6;
+    font-size: 1rem;
+    background: #f4f8fc;
+    color: #18325d;
+}
+
+.submit-btn {
+    margin-top: 16px;
+    padding: 11px 0;
+    width: 100%;
+    border-radius: 22px;
+    background: #204070;
+    color: #fff;
+    font-size: 1.08rem;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: background 0.18s;
+}
+
+.submit-btn.disabled,
+.submit-btn:disabled {
+    background: #b3c7e6;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.upload-preview {
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+}
+.upload-preview-img {
+    max-width: 180px;
+    max-height: 120px;
+    border-radius: 8px;
+    box-shadow: 0 1px 8px rgba(32, 64, 112, 0.13);
+    object-fit: cover;
+}
+
+@media (max-width: 600px) {
+    .form-wrapper {
+        flex-direction: column;
+        gap: 18px;
+    }
+}
+
+@media (max-width: 600px) {
+    .app-container {
+        max-width: 98vw;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .form-wrapper {
+        padding: 0;
+        gap: 10px;
+    }
+    .app-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+    .upload-box {
+        width: 100%;
+        min-height: 120px;
+        padding: 12px 0;
+    }
+    .form-fields {
+        gap: 10px;
+        width: 100%;
+    }
+    .submit-btn {
+        margin-top: 8px;
+        font-size: 1rem;
+    }
+}
