@@ -33,7 +33,7 @@
 - **Creative Naming**: Give your upload a unique name.
 - **Responsive Design**: Optimized for both desktop and mobile devices.
 - **Form Validation**: Submit button is enabled only when all fields are filled out.
-- **Clean, Decoupled Components**: Senior-level architecture with reusable, maintainable code.
+- **Clean, Decoupled Components**: Clean architecture with reusable, maintainable code.
 
 ## 🛠️ Built With
 
