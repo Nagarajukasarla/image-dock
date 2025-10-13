@@ -1,73 +1,115 @@
-# React + TypeScript + Vite
+# Image Dock
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div align="center">
+  <img src="src/assets/screenshots/image-dock-demo.png" alt="Image Dock Screenshot" width="800">
+</div>
 
-Currently, two official plugins are available:
+<br/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<div align="center">
 
-## React Compiler
+[![React](https://img.shields.io/badge/React-18.2.0-blue.svg?style=for-the-badge&logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.7.2-blue.svg?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.2.0-purple.svg?style=for-the-badge&logo=vite)](https://vitejs.dev/)
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+</div>
 
-## Expanding the ESLint configuration
+## 🖼️ About The Project
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+**Image Dock** is a lightweight, modern image uploader web app. It allows users to easily upload images, categorize them, assign sub-categories, provide a creative name, and preview their upload before submission. The app is fully responsive, works beautifully on both desktop and mobile, and is built with clean, maintainable React and TypeScript code.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 📸 Screenshots
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+<div align="center">
+  <img src="src/assets/screenshots/image-dock-desktop.png" alt="Desktop View" width="400" style="margin-right: 10px;">
+  <img src="src/assets/screenshots/image-dock-mobile.png" alt="Mobile View" width="250">
+</div>
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Features
+
+- **Drag & Drop or Browse**: Upload images by dragging them into the box or browsing your files.
+- **Live Image Preview**: Instantly preview the selected image before uploading.
+- **Category & Sub-category Selection**: Choose from predefined grocery categories and sub-categories.
+- **Creative Naming**: Give your upload a unique name.
+- **Responsive Design**: Optimized for both desktop and mobile devices.
+- **Form Validation**: Submit button is enabled only when all fields are filled out.
+- **Clean, Decoupled Components**: Senior-level architecture with reusable, maintainable code.
+
+## 🛠️ Built With
+
+- [React](https://reactjs.org/) — Frontend library
+- [TypeScript](https://www.typescriptlang.org/) — Type safety
+- [Vite](https://vitejs.dev/) — Build tool and development server
+- **CSS** — Responsive, custom styles (no frameworks)
+
+## 🚀 Getting Started
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/yourusername/image-dock.git
+    cd image-dock
+    ```
+
+2. **Install dependencies:**
+
+    ```bash
+    npm install
+    # or
+    bun install
+    ```
+
+3. **Start the development server:**
+
+    ```bash
+    npm run dev
+    # or
+    bun dev
+    ```
+
+4. **Open** [http://localhost:5173](http://localhost:5173) **in your browser.**
+
+## 🧩 Project Structure
+
+```
+image-dock/
+├── src/
+│   ├── api/
+│   │   └── fileUpload.ts
+│   ├── components/
+│   │   ├── Upload.tsx
+│   │   ├── CategorySelector.tsx
+│   │   ├── NameInput.tsx
+│   │   └── SubmitButton.tsx
+│   ├── constants/
+│   │   └── groceryCategories.ts
+│   ├── styles/
+│   │   └── App.css
+│   ├── utils/
+│   │   └── validation.ts
+│   ├── App.tsx
+│   └── main.tsx
+└── ...
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## ✨ Customization
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- **Categories & Sub-categories:**
+  - Edit `src/constants/groceryCategories.ts` to customize the dropdown options.
+- **API Integration:**
+  - Implement your backend logic in `src/api/fileUpload.ts` inside the provided try-catch block.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 📦 Deployment
+
+This project can be easily deployed to any static hosting service (Netlify, Vercel, GitHub Pages, etc.). Build the project using:
+
+```bash
+npm run build
+# or
+bun run build
 ```
+The output will be in the `dist/` directory.
+
+## 📝 License
+
+Distributed under the MIT License. See `LICENSE` for more information.
