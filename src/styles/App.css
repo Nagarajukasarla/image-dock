@@ -33,11 +33,20 @@
     min-height: 240px;
     margin-bottom: 0;
     transition: border 0.2s;
+    position: relative;
 }
 
 .upload-box.drag-active {
     border: 2px solid #4c8bf5;
     background: #eaf2fb;
+}
+
+.upload-box.drag-active * {
+    pointer-events: none;
+}
+
+.upload-box.drag-active .change-button {
+    pointer-events: auto;
 }
 
 .upload-icon-area {

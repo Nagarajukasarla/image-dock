@@ -28,19 +28,75 @@ const Upload: React.FC<UploadProps> = ({ onFileChange, file }) => {
         };
     }, [previewUrl]);
 
-    const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragEnter = (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        setDragActive(e.type === "dragover");
+        console.log('Drag enter event');
+        setDragActive(true);
     };
 
-    const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
+    const handleDragLeave = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Drag leave event');
+        setDragActive(false);
+    };
+
+    const handleDragOver = (e: React.DragEvent<HTMLDivElement>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        console.log('Drag over event');
+    };
+
+    const handleDrop = async (e: React.DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         e.stopPropagation();
         setDragActive(false);
-        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-            const file = e.dataTransfer.files[0];
-            handleFileSelect(file);
+
+        let files: File[] = [];
+        const dt = e.dataTransfer;
+
+        // 1. Handle local files
+        if (dt?.files && dt.files.length > 0) {
+            files = Array.from(dt.files);
+        }
+
+        // 2. Handle image URLs (dragged from browser)
+        if (files.length === 0 && dt?.items) {
+            for (let i = 0; i < dt.items.length; i++) {
+                const item = dt.items[i];
+                if (item.kind === 'string' && item.type === 'text/uri-list') {
+                    item.getAsString(async (url) => {
+                        if (url && (url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.png') || url.endsWith('.gif') || url.endsWith('.webp') || url.endsWith('.bmp'))) {
+                            try {
+                                const response = await fetch(url);
+                                const blob = await response.blob();
+                                const filename = url.split('/').pop()?.split('?')[0] || 'image-from-web.' + blob.type.split('/')[1];
+                                const file = new File([blob], filename, { type: blob.type });
+                                handleFileSelect(file);
+                            } catch (err) {
+                                alert('Failed to fetch image from URL.');
+                            }
+                        }
+                    });
+                    return;
+                }
+            }
+        }
+
+        // 3. Fallback: items as files
+        if (files.length === 0 && dt?.items) {
+            for (let i = 0; i < dt.items.length; i++) {
+                const item = dt.items[i];
+                if (item.kind === 'file') {
+                    const file = item.getAsFile();
+                    if (file) files.push(file);
+                }
+            }
+        }
+
+        if (files.length > 0) {
+            handleFileSelect(files[0]);
         }
     };
 
@@ -72,10 +128,13 @@ const Upload: React.FC<UploadProps> = ({ onFileChange, file }) => {
     return (
         <div
             className={`upload-box${dragActive ? " drag-active" : ""}`}
-            onDragOver={handleDrag}
-            onDragLeave={handleDrag}
+            onDragEnter={handleDragEnter}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             data-testid="upload-dropzone"
+            tabIndex={0}
+            role="button"
         >
             <div className="preview-container">
                 {previewUrl ? (
@@ -85,6 +144,7 @@ const Upload: React.FC<UploadProps> = ({ onFileChange, file }) => {
                             className="change-button"
                             onClick={handleButtonClick}
                             aria-label="Change image"
+                            tabIndex={-1}
                         >
                             <svg fill="#204070" viewBox="0 0 512 512" data-name="Layer 1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" stroke="#204070" width="24" height="24">
                                 <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -99,7 +159,7 @@ const Upload: React.FC<UploadProps> = ({ onFileChange, file }) => {
                         </div>
                     </div>
                 ) : (
-                    <div className="upload-icon-area" onClick={handleButtonClick}>
+                    <div className="upload-icon-area">
                         <span role="img" aria-label="upload" className="upload-icon">
                             <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g id="SVGRepo_bgCarrier" strokeWidth="0" />
@@ -121,6 +181,7 @@ const Upload: React.FC<UploadProps> = ({ onFileChange, file }) => {
                 accept="image/*"
                 style={{ display: "none" }}
                 onChange={handleInputChange}
+                multiple={false}
             />
         </div>
     );

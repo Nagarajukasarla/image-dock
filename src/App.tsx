@@ -69,9 +69,9 @@ const App: React.FC = () => {
     const allValid = validateFields(file, category, subCategory, productName, name);
 
     return (
-        <div className="app-container">
+        <div className="app-container" onDragOver={(e) => e.preventDefault()}>
             <h1 className="app-title">Upload Your Masterpiece</h1>
-            <div className="form-wrapper">
+            <div className="form-wrapper" onDragOver={(e) => e.preventDefault()}>
                 <Upload onFileChange={setFile} file={file} />
                 <div className="form-fields">
                     <CategorySelector
