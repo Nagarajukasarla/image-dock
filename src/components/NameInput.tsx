@@ -2,24 +2,31 @@ import React from "react";
 import "@/styles/App.css";
 
 interface NameInputProps {
-  value: string;
-  onChange: (val: string) => void;
+    value: string;
+    onChange: (val: string) => void;
+    label?: string;
+    placeholder?: string;
 }
 
-const NameInput: React.FC<NameInputProps> = ({ value, onChange }) => (
-  <div className="name-input-wrapper">
-    <label className="name-label">
-      Name
-      <input
-        type="text"
-        placeholder="Enter a creative name..."
-        value={value}
-        className="name-input"
-        onChange={(e) => onChange(e.target.value)}
-        maxLength={50}
-      />
-    </label>
-  </div>
+const NameInput: React.FC<NameInputProps> = ({
+    value,
+    onChange,
+    label = "Name",
+    placeholder = "Enter a name..."
+}) => (
+    <div className="name-input-wrapper">
+        <label className="name-label">
+            {label}
+            <input
+                type="text"
+                placeholder={placeholder}
+                value={value}
+                className="name-input"
+                onChange={(e) => onChange(e.target.value)}
+                maxLength={50}
+            />
+        </label>
+    </div>
 );
 
 export default NameInput;

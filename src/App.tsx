@@ -14,6 +14,7 @@ const App: React.FC = () => {
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
     const [name, setName] = useState("");
+    const [productName, setProductName] = useState("");
     const [submitting, setSubmitting] = useState(false);
 
     const resetForm = () => {
@@ -21,21 +22,23 @@ const App: React.FC = () => {
         setCategory("");
         setSubCategory("");
         setName("");
+        setProductName("");
     };
 
     const handleSubmit = async () => {
-        if (!validateFields(file, category, subCategory, name)) return;
+        if (!validateFields(file, category, subCategory, productName, name)) return;
         setSubmitting(true);
         try {
             const formData = new FormData();
             if (file) formData.append("image", file);
             formData.append("category", category);
             formData.append("sub_category", subCategory);
+            formData.append("product_name", productName);
             formData.append("name", name);
-            
+
             await fileUpload(formData);
             resetForm();
-            
+
             // Show success toast
             toast.success('Image uploaded successfully!', {
                 position: "top-center",
@@ -63,11 +66,11 @@ const App: React.FC = () => {
         }
     };
 
-    const allValid = validateFields(file, category, subCategory, name);
+    const allValid = validateFields(file, category, subCategory, productName, name);
 
     return (
         <div className="app-container">
-            <h1 className="app-title">Share Your Masterpiece</h1>
+            <h1 className="app-title">Upload Your Masterpiece</h1>
             <div className="form-wrapper">
                 <Upload onFileChange={setFile} file={file} />
                 <div className="form-fields">
@@ -77,7 +80,18 @@ const App: React.FC = () => {
                         onCategoryChange={setCategory}
                         onSubCategoryChange={setSubCategory}
                     />
-                    <NameInput value={name} onChange={setName} />
+                    <NameInput
+                        value={productName}
+                        onChange={setProductName}
+                        label="Product Name"
+                        placeholder="Enter product name..."
+                    />
+                    <NameInput
+                        value={name}
+                        onChange={setName}
+                        label="Product Name with Brand"
+                        placeholder="Enter product name with brand..."
+                    />
                     <SubmitButton disabled={!allValid || submitting} onClick={handleSubmit} />
                 </div>
             </div>
