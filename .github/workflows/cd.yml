@@ -27,7 +27,7 @@ jobs:
             # Install Netlify CLI
             - name: Install Netlify CLI
               run: npm install -g netlify-cli
-            
+
             # Deploy to Netlify
             - name: Deploy to Netlify
               env:
@@ -35,7 +35,7 @@ jobs:
                   SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
                   BRANCH: ${{ github.event.workflow_run.head_branch }}
               run: |
-                # Make the deploy script executable
-                chmod +x ./deploy/scripts/deploy-to-netlify.sh
-                # Run deployment
-                ./deploy/scripts/deploy-to-netlify.sh
+                  # Make the deploy script executable
+                  chmod +x ./deploy/scripts/deploy-to-netlify.sh
+                  # Run deployment
+                  ./deploy/scripts/deploy-to-netlify.sh

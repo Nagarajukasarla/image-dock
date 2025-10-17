@@ -29,6 +29,11 @@ jobs:
 
             - name: Build
               run: bun run build
+
+            - name: Prepare deployment artifacts with separated serverless deps
+              run: |
+                chmod +x ./scripts/prepare-deploy.sh
+                ./scripts/prepare-deploy.sh
             
             - name: Upload production-ready build
               uses: actions/upload-artifact@v4
