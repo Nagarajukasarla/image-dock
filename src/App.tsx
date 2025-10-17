@@ -30,7 +30,7 @@ const App: React.FC = () => {
             const formData = new FormData();
             if (file) formData.append("image", file);
             formData.append("category", category);
-            formData.append("subCategory", subCategory);
+            formData.append("sub_category", subCategory);
             formData.append("name", name);
             
             await fileUpload(formData);
