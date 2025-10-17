@@ -23,7 +23,6 @@ const NameInput: React.FC<NameInputProps> = ({
                 value={value}
                 className="name-input"
                 onChange={(e) => onChange(e.target.value)}
-                maxLength={50}
             />
         </label>
     </div>
