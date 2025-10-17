@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
-import "../styles/App.css";
+import "@/styles/App.css";
 
 interface UploadProps {
     onFileChange: (file: File | null) => void;

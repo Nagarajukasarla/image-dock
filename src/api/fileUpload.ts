@@ -1,6 +1,9 @@
+import { BASE_URL } from "@/constants/API";
+
+
 export async function fileUpload(data: FormData) {
     try {
-        const response = await fetch("http://localhost:8081/upload", {
+        const response = await fetch(`${BASE_URL}/upload`, {
             method: "POST",
             body: data,
         });

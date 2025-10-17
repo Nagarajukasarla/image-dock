@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { groceryCategories } from "../constants/groceryCategories";
-import "../styles/App.css";
+import { groceryCategories } from "@/constants/groceryCategories";
+import "@/styles/App.css";
 
 interface CategorySelectorProps {
   category: string;

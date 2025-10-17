@@ -1,0 +1,1 @@
+export const BASE_URL = "https://painful-olive-mylearningsfromweb-b889fe8d.koyeb.app";

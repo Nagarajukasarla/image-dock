@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Upload from "./components/Upload";
-import CategorySelector from "./components/CategorySelector";
-import NameInput from "./components/NameInput";
-import SubmitButton from "./components/SubmitButton";
-import { validateFields } from "./utils/validation";
-import { fileUpload } from "./api/fileUpload";
-import "./styles/App.css";
+import Upload from "@/components/Upload";
+import CategorySelector from "@/components/CategorySelector";
+import NameInput from "@/components/NameInput";
+import SubmitButton from "@/components/SubmitButton";
+import { validateFields } from "@/utils/validation";
+import { fileUpload } from "@/api/fileUpload";
+import "@/styles/App.css";
 
 const App: React.FC = () => {
     const [file, setFile] = useState<File | null>(null);
