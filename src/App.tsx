@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Upload from "@/components/Upload";
@@ -8,8 +8,12 @@ import SubmitButton from "@/components/SubmitButton";
 import { validateFields } from "@/utils/validation";
 import { fileUpload } from "@/api/fileUpload";
 import "@/styles/App.css";
+import { hello } from "./api/testing";
 
 const App: React.FC = () => {
+    useEffect(() => {
+        hello();
+    }, []);
     const [file, setFile] = useState<File | null>(null);
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
